@@ -150,7 +150,7 @@ def generate_report():
                 for court in sorted(courts_data.keys()):
                     times_for_court = sorted(courts_data[court], key=lambda t: datetime.strptime(t, "%I:%M %p"))
                     if times_for_court: # Only print court if it has times
-                        output_parts.append(f"  🟠 {court} - {' | '.join(times_for_court)}") # Added orange circle
+                        output_parts.append(f"  🩵 {court} - {' | '.join(times_for_court)}") # Added orange circle
             elif len(unique_times) == 1: # Exactly one unique time
                 output_parts.append(f"\n❌ {formatted_date}: Insufficient slots for proper booking")
             else: # No unique times (len == 0)
@@ -172,7 +172,7 @@ def generate_report():
                 for court in sorted(courts_data.keys()):
                     times_for_court = sorted(courts_data[court], key=lambda t: datetime.strptime(t, "%I:%M %p"))
                     if times_for_court: # Only print court if it has times
-                        output_parts.append(f"  🟠 {court} - {' | '.join(times_for_court)}") # Added orange circle
+                        output_parts.append(f"  💙 {court} - {' | '.join(times_for_court)}") # Added orange circle
             elif len(unique_times) == 1: # Exactly one unique time
                 output_parts.append(f"\n❌ {formatted_date}: Insufficient slots for proper booking")
             else: # No unique times (len == 0)
@@ -211,7 +211,7 @@ def generate_report():
                     for court in sorted(court_b_data.keys()):
                         times = sorted(court_b_data[court], key=lambda t: datetime.strptime(t, "%I:%M %p"))
                         if times:
-                            output_parts.append(f"    🟠 {court} - {' | '.join(times)}") # Added orange circle
+                            output_parts.append(f"    🔵 {court} - {' | '.join(times)}") # Added orange circle
             elif len(unique_times_all) == 1: # Exactly one unique time
                 output_parts.append(f"\n❌ {formatted_date}: Insufficient slots for proper booking")
             else: # No unique times (len == 0)
@@ -239,14 +239,14 @@ def generate_report():
                     for court in sorted(court_p_data.keys()):
                         times = sorted(court_p_data[court], key=lambda t: datetime.strptime(t, "%I:%M %p"))
                         if times:
-                            output_parts.append(f"    🟠 {court} - {' | '.join(times)}") # Added orange circle
+                            output_parts.append(f"    🟡 {court} - {' | '.join(times)}") # Added orange circle
                 
                 if court_d_data:
                     output_parts.append("  --------------------") 
                     for court in sorted(court_d_data.keys()):
                         times = sorted(court_d_data[court], key=lambda t: datetime.strptime(t, "%I:%M %p"))
                         if times:
-                            output_parts.append(f"    🟠 {court} - {' | '.join(times)}") # Added orange circle
+                            output_parts.append(f"    🟤 {court} - {' | '.join(times)}") # Added orange circle
             elif len(unique_times_all) == 1: # Exactly one unique time
                 output_parts.append(f"\n❌ {formatted_date}: Insufficient slots for proper booking")
             else: # No unique times (len == 0)
