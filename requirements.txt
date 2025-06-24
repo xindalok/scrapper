@@ -2,4 +2,4 @@ Flask
 pandas
 beautifulsoup4
 requests
-matplotlib # Include if you plan to add plotting
+gunicorn 
