@@ -146,7 +146,7 @@ def generate_report():
                 unique_times.update(times)
             
             if len(unique_times) > 1: # More than one unique time
-                output_parts.append(f"📅 {formatted_date}") 
+                output_parts.append(f"\n📅 {formatted_date}") 
                 for court in sorted(courts_data.keys()):
                     times_for_court = sorted(courts_data[court], key=lambda t: datetime.strptime(t, "%I:%M %p"))
                     if times_for_court: # Only print court if it has times
@@ -168,7 +168,7 @@ def generate_report():
                 unique_times.update(times)
             
             if len(unique_times) > 1: # More than one unique time
-                output_parts.append(f"📅 {formatted_date}") 
+                output_parts.append(f"\n📅 {formatted_date}") 
                 for court in sorted(courts_data.keys()):
                     times_for_court = sorted(courts_data[court], key=lambda t: datetime.strptime(t, "%I:%M %p"))
                     if times_for_court: # Only print court if it has times
@@ -194,7 +194,7 @@ def generate_report():
                 unique_times_all.update(times)
             
             if len(unique_times_all) > 1: # More than one unique time
-                output_parts.append(f"📅 {formatted_date}") 
+                output_parts.append(f"\n📅 {formatted_date}") 
                 
                 court_a_data = {k: v for k, v in courts_data.items() if k in EXPO_COURTS_A}
                 court_b_data = {k: v for k, v in courts_data.items() if k in EXPO_COURTS_B}
@@ -229,7 +229,7 @@ def generate_report():
                 unique_times_all.update(times)
             
             if len(unique_times_all) > 1: # More than one unique time
-                output_parts.append(f"📅 {formatted_date}") 
+                output_parts.append(f"\n📅 {formatted_date}") 
                 
                 court_p_data = {k: v for k, v in courts_data.items() if k in SIMS_COURTS_P}
                 court_d_data = {k: v for k, v in courts_data.items() if k in SIMS_COURTS_D}
