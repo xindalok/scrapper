@@ -152,9 +152,9 @@ def generate_report():
                     if times_for_court: # Only print court if it has times
                         output_parts.append(f"  🟠 {court} - {' | '.join(times_for_court)}") # Added orange circle
             elif len(unique_times) == 1: # Exactly one unique time
-                output_parts.append(f"❌ {formatted_date}: Insufficient slots for proper booking")
+                output_parts.append(f"\n❌ {formatted_date}: Insufficient slots for proper booking")
             else: # No unique times (len == 0)
-                output_parts.append(f"❌ {formatted_date}: No timeslots found.")
+                output_parts.append(f"\n❌ {formatted_date}: No timeslots found.")
         
         # Sims Courts for Weekdays
         output_parts.append("\n🏟️🏟️ Sims 🏟️🏟️") 
@@ -174,9 +174,9 @@ def generate_report():
                     if times_for_court: # Only print court if it has times
                         output_parts.append(f"  🟠 {court} - {' | '.join(times_for_court)}") # Added orange circle
             elif len(unique_times) == 1: # Exactly one unique time
-                output_parts.append(f"❌ {formatted_date}: Insufficient slots for proper booking")
+                output_parts.append(f"\n❌ {formatted_date}: Insufficient slots for proper booking")
             else: # No unique times (len == 0)
-                output_parts.append(f"❌ {formatted_date}: No timeslots found.")
+                output_parts.append(f"\n❌ {formatted_date}: No timeslots found.")
 
 
         # --- Weekend Report ---
@@ -213,9 +213,9 @@ def generate_report():
                         if times:
                             output_parts.append(f"    🟠 {court} - {' | '.join(times)}") # Added orange circle
             elif len(unique_times_all) == 1: # Exactly one unique time
-                output_parts.append(f"❌ {formatted_date}: Insufficient slots for proper booking")
+                output_parts.append(f"\n❌ {formatted_date}: Insufficient slots for proper booking")
             else: # No unique times (len == 0)
-                output_parts.append(f"❌ {formatted_date}: No timeslots found.")
+                output_parts.append(f"\n❌ {formatted_date}: No timeslots found.")
         
         # Sims Courts for Weekends (with P/D breakdown)
         output_parts.append("\n🏟️🏟️ Sims 🏟️🏟️") 
@@ -248,9 +248,9 @@ def generate_report():
                         if times:
                             output_parts.append(f"    🟠 {court} - {' | '.join(times)}") # Added orange circle
             elif len(unique_times_all) == 1: # Exactly one unique time
-                output_parts.append(f"❌ {formatted_date}: Insufficient slots for proper booking")
+                output_parts.append(f"\n❌ {formatted_date}: Insufficient slots for proper booking")
             else: # No unique times (len == 0)
-                output_parts.append(f"❌ {formatted_date}: No timeslots found.")
+                output_parts.append(f"\n❌ {formatted_date}: No timeslots found.")
 
         final_message = "\n".join(output_parts)
         
