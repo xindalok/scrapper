@@ -1,5 +1,3 @@
-# app.py (for Google Cloud Run deployment)
-
 import pandas as pd
 from bs4 import BeautifulSoup
 import requests
@@ -103,13 +101,14 @@ def generate_report():
         # --- Format Output Message ---
         output_parts = []
 
-        output_parts.append("🏸 **Badminton Court Availability (Next 7 Days)** 🏸n")
-        output_parts.append(f"*(Data as of {datetime.now().strftime('%d %b %Y, %I:%M %p %Z')})*n")
+        output_parts.append("🏸 **Badminton Court Availability (Next 7 Days)** 🏸\n")
+        # The line below has been removed:
+        # output_parts.append(f"*(Data as of {datetime.now().strftime('%d %b %Y, %I:%M %p %Z')})*\n") 
 
         # Weekday Report
-        output_parts.append("n--- **Weekdays (7 PM - 11 PM)** ---n")
+        output_parts.append("\n--- **Weekdays (7 PM - 11 PM)** ---\n")
         
-        output_parts.append("n**Expo Courts:**")
+        output_parts.append("\n**Expo Courts:**")
         for date_str, courts_data in expo_weekday_data.items():
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
             formatted_date = date_obj.strftime("%d %b %Y (%a)")
@@ -120,14 +119,11 @@ def generate_report():
             sorted_times = sorted(list(unique_times), key=lambda t: datetime.strptime(t, "%I:%M %p"))
 
             if unique_times:
-                output_parts.append(f"n✅ **{formatted_date}**: Available timeslots: {', '.join(sorted_times)}")
-                # For brevity, only print courts with multiple timeslots or if specific info is needed
-                # for court, times in sorted(courts_data.items()):
-                #     if times: output_parts.append(f"  {court}: {', '.join(times)}")
+                output_parts.append(f"\n✅ **{formatted_date}**: Available timeslots: {', '.join(sorted_times)}")
             else:
-                output_parts.append(f"n❌ **{formatted_date}**: No timeslots found.")
+                output_parts.append(f"\n❌ **{formatted_date}**: No timeslots found.")
         
-        output_parts.append("n**Sims Courts:**")
+        output_parts.append("\n**Sims Courts:**")
         for date_str, courts_data in sims_weekday_data.items():
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
             formatted_date = date_obj.strftime("%d %b %Y (%a)")
@@ -138,15 +134,15 @@ def generate_report():
             sorted_times = sorted(list(unique_times), key=lambda t: datetime.strptime(t, "%I:%M %p"))
 
             if unique_times:
-                output_parts.append(f"n✅ **{formatted_date}**: Available timeslots: {', '.join(sorted_times)}")
+                output_parts.append(f"\n✅ **{formatted_date}**: Available timeslots: {', '.join(sorted_times)}")
             else:
-                output_parts.append(f"n❌ **{formatted_date}**: No timeslots found.")
+                output_parts.append(f"\n❌ **{formatted_date}**: No timeslots found.")
 
 
         # Weekend Report
-        output_parts.append("n--- **Weekends (11 AM - 10 PM)** ---n")
+        output_parts.append("\n--- **Weekends (11 AM - 10 PM)** ---\n")
 
-        output_parts.append("n**Expo Courts:**")
+        output_parts.append("\n**Expo Courts:**")
         for date_str, courts_data in expo_weekend_data.items():
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
             formatted_date = date_obj.strftime("%d %b %Y (%a)")
@@ -157,11 +153,11 @@ def generate_report():
             sorted_times = sorted(list(unique_times), key=lambda t: datetime.strptime(t, "%I:%M %p"))
 
             if unique_times:
-                output_parts.append(f"n✅ **{formatted_date}**: Available timeslots: {', '.join(sorted_times)}")
+                output_parts.append(f"\n✅ **{formatted_date}**: Available timeslots: {', '.join(sorted_times)}")
             else:
-                output_parts.append(f"n❌ **{formatted_date}**: No timeslots found.")
+                output_parts.append(f"\n❌ **{formatted_date}**: No timeslots found.")
         
-        output_parts.append("n**Sims Courts:**")
+        output_parts.append("\n**Sims Courts:**")
         for date_str, courts_data in sims_weekend_data.items():
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
             formatted_date = date_obj.strftime("%d %b %Y (%a)")
@@ -172,28 +168,24 @@ def generate_report():
             sorted_times = sorted(list(unique_times), key=lambda t: datetime.strptime(t, "%I:%M %p"))
 
             if unique_times:
-                output_parts.append(f"n✅ **{formatted_date}**: Available timeslots: {', '.join(sorted_times)}")
+                output_parts.append(f"\n✅ **{formatted_date}**: Available timeslots: {', '.join(sorted_times)}")
             else:
-                output_parts.append(f"n❌ **{formatted_date}**: No timeslots found.")
+                output_parts.append(f"\n❌ **{formatted_date}**: No timeslots found.")
 
-        final_message = "n".join(output_parts)
+        final_message = "\n".join(output_parts)
         
-        # You could generate a summary plot here if desired, e.g.,
-        # total available slots per day/location, etc.
-        # For simplicity, I'm omitting plot generation for this specific script,
-        # but the structure is there if you want to add it.
         img_base64 = None 
 
         return {
             "message": final_message,
-            "image": img_base64 # This will be None unless you add plot generation
+            "image": img_base64 
         }
 
     except Exception as e:
         import traceback
         print(f"Error in generate_report: {traceback.format_exc()}")
         return {
-            "message": f"An unexpected error occurred: {str(e)}nnPlease check the logs.",
+            "message": f"An unexpected error occurred: {str(e)}\n\nPlease check the logs in Cloud Run.",
             "image": None
         }
 
@@ -205,10 +197,7 @@ def handle_execute():
     This specific script doesn't need input parameters, so the request body
     can be empty or ignored.
     """
-    # You can ignore the request.get_json() if no input is needed
-    # data = request.get_json() 
-    
-    result = generate_report() # Call your main logic function
+    result = generate_report()
     return jsonify(result)
 
 if __name__ == '__main__':
