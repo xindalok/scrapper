@@ -180,7 +180,8 @@ def generate_report():
 
 
         # --- Weekend Report ---
-        output_parts.append("\n--- Weekends (11 AM - 10 PM) ---")
+        output_parts.append(f"\n{'='*15}")
+        output_parts.append("\n\n--- Weekends (11 AM - 10 PM) ---")
 
         # Expo Courts for Weekends (with A/B breakdown)
         output_parts.append("\n🏟️🏟️ Expo 🏟️🏟️") 
