@@ -15,7 +15,7 @@ def hello_root():
     return "Hello, root is working!", 200
 
 # --- Constants ---
-WEEKDAY_TIMES = ["07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM"]
+WEEKDAY_TIMES = ["07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM"]
 WEEKEND_TIMES = ["11:00 AM", "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM"]
 
 # Consolidated Court definitions
@@ -135,7 +135,7 @@ def generate_report():
         output_parts.append("\n--- Weekdays (7 PM - 11 PM) ---")
         
         # Expo Courts for Weekdays
-        output_parts.append("\n🏟️🏟️ 🏟️ Expo Courts 🏟️🏟️ 🏟️") 
+        output_parts.append("\n🏟️🏟️🏟️ Expo Courts 🏟️🏟️🏟️") 
         for date_str in sorted(all_fetched_data["expo_weekday"].keys()):
             courts_data = all_fetched_data["expo_weekday"][date_str]
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
@@ -146,18 +146,18 @@ def generate_report():
                 unique_times.update(times)
             
             if len(unique_times) > 1: # More than one unique time
-                output_parts.append(f"\n📅 {formatted_date}") # Changed emoji
+                output_parts.append(f"📅 {formatted_date}") 
                 for court in sorted(courts_data.keys()):
                     times_for_court = sorted(courts_data[court], key=lambda t: datetime.strptime(t, "%I:%M %p"))
                     if times_for_court: # Only print court if it has times
-                        output_parts.append(f"  {court} - {' | '.join(times_for_court)}") 
+                        output_parts.append(f"  🟠 {court} - {' | '.join(times_for_court)}") # Added orange circle
             elif len(unique_times) == 1: # Exactly one unique time
                 output_parts.append(f"❌ {formatted_date}: No feasible game can be made.")
             else: # No unique times (len == 0)
                 output_parts.append(f"❌ {formatted_date}: No timeslots found.")
         
         # Sims Courts for Weekdays
-        output_parts.append("\n🏟️🏟️ 🏟️ Sims Courts 🏟️🏟️ 🏟️") 
+        output_parts.append("\n🏟️🏟️🏟️ Sims Courts 🏟️🏟️🏟️") 
         for date_str in sorted(all_fetched_data["sims_weekday"].keys()):
             courts_data = all_fetched_data["sims_weekday"][date_str]
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
@@ -168,11 +168,11 @@ def generate_report():
                 unique_times.update(times)
             
             if len(unique_times) > 1: # More than one unique time
-                output_parts.append(f"\n📅 {formatted_date}") # Changed emoji
+                output_parts.append(f"📅 {formatted_date}") 
                 for court in sorted(courts_data.keys()):
                     times_for_court = sorted(courts_data[court], key=lambda t: datetime.strptime(t, "%I:%M %p"))
                     if times_for_court: # Only print court if it has times
-                        output_parts.append(f"  {court} - {' | '.join(times_for_court)}") 
+                        output_parts.append(f"  🟠 {court} - {' | '.join(times_for_court)}") # Added orange circle
             elif len(unique_times) == 1: # Exactly one unique time
                 output_parts.append(f"❌ {formatted_date}: No feasible game can be made.")
             else: # No unique times (len == 0)
@@ -183,7 +183,7 @@ def generate_report():
         output_parts.append("\n--- Weekends (11 AM - 10 PM) ---")
 
         # Expo Courts for Weekends (with A/B breakdown)
-        output_parts.append("\n🏟️🏟️ 🏟️ Expo Courts 🏟️🏟️ 🏟️") 
+        output_parts.append("\n🏟️🏟️🏟️ Expo Courts 🏟️🏟️🏟️") 
         for date_str in sorted(all_fetched_data["expo_weekend"].keys()):
             courts_data = all_fetched_data["expo_weekend"][date_str]
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
@@ -194,31 +194,31 @@ def generate_report():
                 unique_times_all.update(times)
             
             if len(unique_times_all) > 1: # More than one unique time
-                output_parts.append(f"\n📅 {formatted_date}") # Changed emoji
+                output_parts.append(f"📅 {formatted_date}") 
                 
                 court_a_data = {k: v for k, v in courts_data.items() if k in EXPO_COURTS_A}
                 court_b_data = {k: v for k, v in courts_data.items() if k in EXPO_COURTS_B}
 
                 if court_a_data:
-                    output_parts.append("  --------------------") # Changed to separator
+                    output_parts.append("  --------------------") 
                     for court in sorted(court_a_data.keys()):
                         times = sorted(court_a_data[court], key=lambda t: datetime.strptime(t, "%I:%M %p"))
                         if times:
-                            output_parts.append(f"    {court} - {' | '.join(times)}") 
+                            output_parts.append(f"    🟠 {court} - {' | '.join(times)}") # Added orange circle
                 
                 if court_b_data:
-                    output_parts.append("  --------------------") # Changed to separator
+                    output_parts.append("  --------------------") 
                     for court in sorted(court_b_data.keys()):
                         times = sorted(court_b_data[court], key=lambda t: datetime.strptime(t, "%I:%M %p"))
                         if times:
-                            output_parts.append(f"    {court} - {' | '.join(times)}") 
+                            output_parts.append(f"    🟠 {court} - {' | '.join(times)}") # Added orange circle
             elif len(unique_times_all) == 1: # Exactly one unique time
                 output_parts.append(f"❌ {formatted_date}: No feasible game can be made.")
             else: # No unique times (len == 0)
                 output_parts.append(f"❌ {formatted_date}: No timeslots found.")
         
         # Sims Courts for Weekends (with P/D breakdown)
-        output_parts.append("\n🏟️🏟️ 🏟️ Sims Courts 🏟️🏟️ 🏟️") 
+        output_parts.append("\n🏟️🏟️🏟️ Sims Courts 🏟️🏟️🏟️") 
         for date_str in sorted(all_fetched_data["sims_weekend"].keys()):
             courts_data = all_fetched_data["sims_weekend"][date_str]
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
@@ -229,24 +229,24 @@ def generate_report():
                 unique_times_all.update(times)
             
             if len(unique_times_all) > 1: # More than one unique time
-                output_parts.append(f"\n📅 {formatted_date}") # Changed emoji
+                output_parts.append(f"📅 {formatted_date}") 
                 
                 court_p_data = {k: v for k, v in courts_data.items() if k in SIMS_COURTS_P}
                 court_d_data = {k: v for k, v in courts_data.items() if k in SIMS_COURTS_D}
 
                 if court_p_data:
-                    output_parts.append("  --------------------") # Changed to separator
+                    output_parts.append("  --------------------") 
                     for court in sorted(court_p_data.keys()):
                         times = sorted(court_p_data[court], key=lambda t: datetime.strptime(t, "%I:%M %p"))
                         if times:
-                            output_parts.append(f"    {court} - {' | '.join(times)}") 
+                            output_parts.append(f"    🟠 {court} - {' | '.join(times)}") # Added orange circle
                 
                 if court_d_data:
-                    output_parts.append("  --------------------") # Changed to separator
+                    output_parts.append("  --------------------") 
                     for court in sorted(court_d_data.keys()):
                         times = sorted(court_d_data[court], key=lambda t: datetime.strptime(t, "%I:%M %p"))
                         if times:
-                            output_parts.append(f"    {court} - {' | '.join(times)}") 
+                            output_parts.append(f"    🟠 {court} - {' | '.join(times)}") # Added orange circle
             elif len(unique_times_all) == 1: # Exactly one unique time
                 output_parts.append(f"❌ {formatted_date}: No feasible game can be made.")
             else: # No unique times (len == 0)
