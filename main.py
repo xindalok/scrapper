@@ -7,7 +7,6 @@ import requests
 from datetime import datetime
 import io
 import base64
-import matplotlib.pyplot as plt
 import os
 from flask import Flask, request, jsonify
 
