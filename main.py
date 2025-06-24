@@ -135,7 +135,7 @@ def generate_report():
         output_parts.append("\n--- Weekdays (7 PM - 11 PM) ---")
         
         # Expo Courts for Weekdays
-        output_parts.append("\n🏟️🏟️🏟️ Expo Courts 🏟️🏟️🏟️") 
+        output_parts.append("\n🏟️🏟️ Expo 🏟️🏟️") 
         for date_str in sorted(all_fetched_data["expo_weekday"].keys()):
             courts_data = all_fetched_data["expo_weekday"][date_str]
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
@@ -152,12 +152,12 @@ def generate_report():
                     if times_for_court: # Only print court if it has times
                         output_parts.append(f"  🟠 {court} - {' | '.join(times_for_court)}") # Added orange circle
             elif len(unique_times) == 1: # Exactly one unique time
-                output_parts.append(f"❌ {formatted_date}: No feasible game can be made.")
+                output_parts.append(f"❌ {formatted_date}: Insufficient slots for proper booking")
             else: # No unique times (len == 0)
                 output_parts.append(f"❌ {formatted_date}: No timeslots found.")
         
         # Sims Courts for Weekdays
-        output_parts.append("\n🏟️🏟️🏟️ Sims Courts 🏟️🏟️🏟️") 
+        output_parts.append("\n🏟️🏟️ Sims 🏟️🏟️") 
         for date_str in sorted(all_fetched_data["sims_weekday"].keys()):
             courts_data = all_fetched_data["sims_weekday"][date_str]
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
@@ -174,7 +174,7 @@ def generate_report():
                     if times_for_court: # Only print court if it has times
                         output_parts.append(f"  🟠 {court} - {' | '.join(times_for_court)}") # Added orange circle
             elif len(unique_times) == 1: # Exactly one unique time
-                output_parts.append(f"❌ {formatted_date}: No feasible game can be made.")
+                output_parts.append(f"❌ {formatted_date}: Insufficient slots for proper booking")
             else: # No unique times (len == 0)
                 output_parts.append(f"❌ {formatted_date}: No timeslots found.")
 
@@ -183,7 +183,7 @@ def generate_report():
         output_parts.append("\n--- Weekends (11 AM - 10 PM) ---")
 
         # Expo Courts for Weekends (with A/B breakdown)
-        output_parts.append("\n🏟️🏟️🏟️ Expo Courts 🏟️🏟️🏟️") 
+        output_parts.append("\n🏟️🏟️ Expo 🏟️🏟️") 
         for date_str in sorted(all_fetched_data["expo_weekend"].keys()):
             courts_data = all_fetched_data["expo_weekend"][date_str]
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
@@ -213,12 +213,12 @@ def generate_report():
                         if times:
                             output_parts.append(f"    🟠 {court} - {' | '.join(times)}") # Added orange circle
             elif len(unique_times_all) == 1: # Exactly one unique time
-                output_parts.append(f"❌ {formatted_date}: No feasible game can be made.")
+                output_parts.append(f"❌ {formatted_date}: Insufficient slots for proper booking")
             else: # No unique times (len == 0)
                 output_parts.append(f"❌ {formatted_date}: No timeslots found.")
         
         # Sims Courts for Weekends (with P/D breakdown)
-        output_parts.append("\n🏟️🏟️🏟️ Sims Courts 🏟️🏟️🏟️") 
+        output_parts.append("\n🏟️🏟️ Sims 🏟️🏟️") 
         for date_str in sorted(all_fetched_data["sims_weekend"].keys()):
             courts_data = all_fetched_data["sims_weekend"][date_str]
             date_obj = datetime.strptime(date_str, "%Y-%m-%d")
@@ -248,7 +248,7 @@ def generate_report():
                         if times:
                             output_parts.append(f"    🟠 {court} - {' | '.join(times)}") # Added orange circle
             elif len(unique_times_all) == 1: # Exactly one unique time
-                output_parts.append(f"❌ {formatted_date}: No feasible game can be made.")
+                output_parts.append(f"❌ {formatted_date}: Insufficient slots for proper booking")
             else: # No unique times (len == 0)
                 output_parts.append(f"❌ {formatted_date}: No timeslots found.")
 
