@@ -132,7 +132,11 @@ def generate_report():
         output_parts.append("🏸 Badminton Court Availability (Next 7 Days) 🏸")
         
         # --- Weekday Report ---
-        output_parts.append("\n--- W E E K D A Y S (7 PM - 11 PM) ---")
+        output_parts.append("━━━━━━━━━━━━━━━")
+        output_parts.append("     WEEKDAYS     ")
+        output_parts.append("  (7 PM – 10 PM) ")
+        output_parts.append("━━━━━━━━━━━━━━━")
+
         
         # Expo Courts for Weekdays
         output_parts.append("\n🏟️🏟️ Expo 🏟️🏟️") 
@@ -181,7 +185,11 @@ def generate_report():
 
         # --- Weekend Report ---
         output_parts.append(f"\n{'='*15}")
-        output_parts.append("\n\n--- W E E K E N D S (11 AM - 10 PM) ---")
+        output_parts.append("━━━━━━━━━━━━━━━")
+        output_parts.append("     WEEKENDS     ")
+        output_parts.append(" (11 AM – 10 PM) ")
+        output_parts.append("━━━━━━━━━━━━━━━")
+
 
         # Expo Courts for Weekends (with A/B breakdown)
         output_parts.append("\n🏟️🏟️ Expo 🏟️🏟️") 
