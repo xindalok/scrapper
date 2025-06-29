@@ -129,13 +129,14 @@ def generate_report():
         # --- Format Output Message ---
         output_parts = []
 
-        output_parts.append("🏸 Badminton Court Availability (Next 7 Days) 🏸")
+        output_parts.append("🏸 Badminton Court Availability (Next 7 Days) 🏸\n\n\n")
         
         # --- Weekday Report ---
         output_parts.append("━━━━━━━━━━━━━━━")
-        output_parts.append("     WEEKDAYS     ")
+        output_parts.append("    WEEKDAYS    ")  # 4 spaces each side
         output_parts.append("  (7 PM – 10 PM) ")
         output_parts.append("━━━━━━━━━━━━━━━")
+
 
         
         # Expo Courts for Weekdays
@@ -186,8 +187,8 @@ def generate_report():
         # --- Weekend Report ---
         output_parts.append(f"\n{'='*15}")
         output_parts.append("━━━━━━━━━━━━━━━")
-        output_parts.append("     WEEKENDS     ")
-        output_parts.append(" (11 AM – 10 PM) ")
+        output_parts.append("    WEEKENDS    ")  # 4 spaces each side
+        output_parts.append("  (11 AM – 10 PM) ")
         output_parts.append("━━━━━━━━━━━━━━━")
 
 
